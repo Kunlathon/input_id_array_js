@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+
+
+</head>
+<body>
+
+  <div class="container">
+    <h2>Form control: input</h2>
+    <p>The form below contains two input elements; one of type text and one of type password:</p>
+<form>
+      <div class="form-group">
+      <label for="usr">The Text 1</label>
+      <input type="text" class="form-control" name="tt[]" id="tt0" name="username">
+    </div>
+      <div class="form-group">
+      <label for="usr">The Text 2</label>
+      <input type="text" class="form-control" name="tt[]" id="tt1" name="username">
+    </div>
+      <button type="button" id="but_submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+<div id="RunTxtTt"></div>
+
+  </div>
+
+</body>
+</html>
+
+<script>
+  $(document).ready(function(){
+    $("#but_submit").on('click',function(){
+        var txt_tt = [];      
+        var count_int=2;
+        var count=0;
+        while(count<count_int){
+          txt_tt.push($("#tt"+count).val());
+          count=count+1;
+        }
+        $.post("tt.php",{
+          txt_tt:txt_tt
+        },function(run_txt_tt){
+          if(run_txt_tt!=""){
+            $("#RunTxtTt").html(run_txt_tt)
+          }else{}
+        })
+    });
+  });
+</script>
